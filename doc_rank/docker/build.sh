@@ -1,1 +1,1 @@
-docker build -t doc_ranker -f Dockerfile .
+docker build -t doc_ranker -f Dockerfile ../
