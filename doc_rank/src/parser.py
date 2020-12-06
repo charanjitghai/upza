@@ -43,6 +43,7 @@ class HtmlParser:
         print("exiting with ", final_words)
         return final_words
 
-html_parser = HtmlParser(input("url? "))
-html_parser.get_all_words()
+if __name__ == '__main__':
+    html_parser = HtmlParser(input("url? "))
+    html_parser.get_all_words()
 
