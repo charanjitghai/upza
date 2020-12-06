@@ -1,0 +1,1 @@
+docker run -it doc_ranker:latest bash
