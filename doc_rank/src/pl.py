@@ -91,6 +91,7 @@ def test():
 			print("Failed")
 			return -1
 	print("Passed")
+	pli.close()
 
 def test2():
 	pli = pl('./data/', debug=True)
@@ -102,5 +103,6 @@ def test2():
 		print("Failed: expected m1 was ", top[0])
 		return -1
 	print("Passed")	
+	pli.close()
 test()
 test2()
