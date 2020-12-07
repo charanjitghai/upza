@@ -1,8 +1,8 @@
 from os import path
 from pathlib import Path
 import numpy as np
-from parser import parser
-from lexer import lexer
+from .parser import parser
+from .lexer import lexer
 
 class pl_entry:
 	def __init__(self, entity_id, tf):
@@ -65,15 +65,17 @@ class pl:
 	def rank(self, keywords, limit):
 		doc_to_score = {}
 		for keyword in keywords:
-			for (_, entry) in self.word_to_entries[keyword].items():
-				doc = entry.entity_id
-				score = entry.tf
-				if doc not in doc_to_score:
-					doc_to_score[doc] = 0
-				doc_to_score[doc] += score
+			keyword = self.lexer.is_valid_word(keyword)[1]
+			if keyword in self.word_to_entries:
+				for (_, entry) in self.word_to_entries[keyword].items():
+					doc = entry.entity_id
+					score = entry.tf
+					if doc not in doc_to_score:
+						doc_to_score[doc] = 0
+					doc_to_score[doc] += score
 		doc_score_tups = [(word, score) for (word, score) in doc_to_score.items()]
 		doc_score_tups = sorted(doc_score_tups, key = lambda x : x[1])
-		top = doc_score_tups[-limit:]
+		top = doc_score_tups[-limit:] if limit <= len(doc_score_tups) else doc_score_tups
 		return top
 
 
@@ -104,5 +106,7 @@ def test2():
 		return -1
 	print("Passed")	
 	pli.close()
-test()
-test2()
+
+if __name__ == '__main__':
+	test()
+	test2()

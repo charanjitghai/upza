@@ -7,6 +7,7 @@ from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
 from swagger_server import util
+from .entity import Entity
 
 
 class RankEntitiesResponse(Model):
