@@ -1,3 +1,3 @@
-build: docker/build.sh
-run: docker/run.sh
-input url like: http://www.google.com
+build: ./build.sh
+run: ./run.sh
+test: docker container exec -it <container_id> bash -> cd python-client -> python test/test_default_api.py
