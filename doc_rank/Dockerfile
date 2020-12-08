@@ -14,8 +14,7 @@ COPY . /usr/src/app
 EXPOSE 8080
 
 WORKDIR /usr/src/app/python-flask-server/
-#ENTRYPOINT ["python3"]
+ENTRYPOINT ["python3"]
 
-#CMD ["-m", "swagger_server"]
-CMD ["/bin/bash"]
+CMD ["-m", "swagger_server"]
 

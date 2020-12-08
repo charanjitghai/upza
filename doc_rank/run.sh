@@ -1,1 +1,1 @@
-docker run -p 8080:8080 -it doc_ranker:latest
+docker run -d doc_ranker:latest
