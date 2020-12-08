@@ -6,6 +6,7 @@ from swagger_server.models.process_msg_request import ProcessMsgRequest  # noqa:
 from swagger_server.models.rank_entities_request import RankEntitiesRequest  # noqa: E501
 from swagger_server.models.rank_entities_response import RankEntitiesResponse  # noqa: E501
 from swagger_server.models.entity import Entity
+from swagger_server.models.set_cookie_request import SetCookieRequest
 from swagger_server import util
 from .pl import pl
 
@@ -77,3 +78,19 @@ def rank_entities(body):  # noqa: E501
     
 
     return "Can't process non json requests", 400
+
+def set_cookie(body):  # noqa: E501
+    """Set new cookie
+
+     # noqa: E501
+
+    :param body: Cookie that needs to be set
+    :type body: dict | bytes
+
+    :rtype: None
+    """
+    if connexion.request.is_json:
+        body = SetCookieRequest.from_dict(connexion.request.get_json())  # noqa: E501
+        cookie = body.cookie
+        new_cookie = pli.set_cookie(cookie)
+    return new_cookie

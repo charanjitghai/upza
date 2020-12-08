@@ -21,6 +21,7 @@ class pl:
 		self.parser = parser(debug=debug)
 		self.lexer = lexer(debug=debug)
 		self.debug = debug
+		#self.auth_controller = auth_controller()
 
 	def log(self, *arg):
 		if self.debug:
@@ -42,9 +43,13 @@ class pl:
 			self.add_entry(word, entity_id, wm[word])
 
 	def process_doc(self, url):
-		text = self.parser.get_text(url)
+		text = self.parser.get_wiki(url)
 		words = self.lexer.get_all_words(text)
 		self.process(url, words)
+
+	def set_cookie(self, cookie):
+		self.log("setting cookie")
+		self.parser.set_cookie(cookie)
 
 	def process_msg(self, msg_id, text):
 		self.process(msg_id, self.lexer.get_all_words(text))

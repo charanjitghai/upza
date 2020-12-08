@@ -80,6 +80,28 @@ paths:
           schema:
             $ref: "#/definitions/RankEntitiesResponse"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /actions/set/cookie:
+    post:
+      summary: "Set new cookie"
+      description: ""
+      operationId: "set_cookie"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cookie that needs to be set"
+        required: true
+        schema:
+          $ref: "#/definitions/SetCookieRequest"
+      responses:
+        "200":
+          description: "successful operation"
+        "405":
+          description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
 definitions:
   ProcessDocRequest:
     type: "object"
@@ -112,6 +134,13 @@ definitions:
       - "keywords"
       - "keywords"
       limit: 0
+  SetCookieRequest:
+    type: "object"
+    properties:
+      cookie:
+        type: "string"
+    example:
+      cookie: "s_ppv=[%22www.adobe.com/experience-platform/real-time-customer-profile.html%22%2C20%2C0%2C812%2C1680%2C812%2C1680%2C1050%2C2%2C%22P%22]; JSESSIONID=6F5AF6C8D244947CBBA31730F5D6EAAD"
   RankEntitiesResponse:
     type: "object"
     properties:
